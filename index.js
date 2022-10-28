@@ -1,4 +1,36 @@
+import { Email } from './Email/index.js';
+
 const renderSection = (emails, element) => {
+  console.log(emails)
+  element.append(...emails.map((item) => Email(item)))
+};
+
+
+fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=unread`)
+  .then((response) => response.json())
+  .then((data) => renderSection(data.emails, document.getElementById('unread'))); 
+
+fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=read`)
+  .then((response) => response.json())
+  .then((data) => renderSection(data.emails, document.getElementById('read')));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const renderSection = (emails, element) => {
+  console.log(emails)
   element.innerHTML = emails
     .map((email) => {
       let iconClass = 'opened';
@@ -21,12 +53,5 @@ const renderSection = (emails, element) => {
       `;
     })
     .join('');
-};
+};*/
 
-fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=unread`)
-  .then((response) => response.json())
-  .then((data) => renderSection(data.emails, document.getElementById('unread')));
-
-fetch(`https://apps.kodim.cz/daweb/trening-api/apis/emails?folder=read`)
-  .then((response) => response.json())
-  .then((data) => renderSection(data.emails, document.getElementById('read')));
