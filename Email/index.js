@@ -23,10 +23,6 @@ element.innerHTML = `
   <div class="email__body"></div>
   </div>
 `;
-
-
 return element;
 };
-
-
 
